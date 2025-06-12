@@ -1,0 +1,21 @@
+Para probar el broker idependientemente:
+En una terminal:
+
+mosquitto_sub -h localhost -p 1883 -t sensors/data
+(Suscripción)
+
+En otra terminal:
+mosquitto_pub -h localhost -p 1883 -t sensors/data -m '{"temperature":25,"humidity":50,"timestamp":"2025-06-11T23:59:59Z"}' (ejemplo)
+(Publicación)
+
+Para probar el sqlite:
+docker cp proy-senso-backend-1:/app/data/sensors.db D:/SQL/SQLITE
+
+sqlite3 sensors.db
+.tables
+SELECT * FROM sensor_data ORDER BY id DESC LIMIT 10;
+.quit
+
+El API / Backend se puede probar simplemente accediendo a http://localhost:3000/data y viendo la información siendo publicada cada minuto.
+
+EL Node-RED se puede probar accediendo a http://127.0.0.1:1880/ y viendo que la interfaz de usuario esté activa y corriendo.
