@@ -1,0 +1,14 @@
+Ya que esta carpeta probablemente quedará sin usar, aquí guardo el código js del sensor random, en caso de borrar el volumen de node-red sin querer:
+
+msg.payload = {
+    temperatura: ((Math.random() * 5 )+ 30).toFixed(2),
+    humedad: ((Math.random() * 20 )+ 50).toFixed(2),
+    timestamp: new Date().toISOString()
+};
+
+return msg;
+
+// .toFixed(@) permite truncar los decimales
+// Math.random() escoge valores de 0 <= X < 1
+// Multiplicado por un número, simula porcentajes (matemáticas básicas emfwekflew)
+// En timestamp se crea un objeto DATE, y se transforma a string en formato ISO

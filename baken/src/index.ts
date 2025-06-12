@@ -35,10 +35,10 @@ mqttClient.on('connect', () => {
 }); //Similar a kafka, se suscribe al backend a un tópico
 
 mqttClient.on('message', (_topic, payload) => {
-    const { tempe, humedad, timestamp } = JSON.parse(payload.toString()); // Aquí se crean 3 variables a partir del payload, que se convierte a string, que se convierte a JSON
+    const { temperatura, humedad, timestamp } = JSON.parse(payload.toString()); // Aquí se crean 3 variables a partir del payload, que se convierte a string, que se convierte a JSON
     db.run(
         `INSERT INTO sensor_data (temperatura, humedad, timestamp) VALUES (?, ?, ?)`,
-        [tempe, humedad, timestamp]
+        [temperatura, humedad, timestamp]
     );
 }); //Parseado del payload (contenido que se recibe) e inserción en la base de datos
 //El artificio ? permite ingresar una variable de typescript a la sentencia sql
